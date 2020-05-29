@@ -31,53 +31,76 @@ let users = {
 let questions = {
     "xf0y6z903ryjaeogesdd253nd":{
         id: "xf0y6z903ryjaeogesdd253nd",
-        firstOption: "Eat raw meat",
-        secondOption: "Eat raw fish",
+        firstOption: {
+            text : "Eat raw meat",
+            votes : ["toby_adedipe"]
+        },
+        secondOption: {
+            text : "Eat raw fish",
+            votes : []
+        },
         askedBy: "mary_poppins",
-        choseFirstOption: ["toby_adedipe"],
-        choseSecondOption: []
     },
     "9qoj738zxseoifhalx09afby":{
         id: "9qoj738zxseoifhalx09afby",
-        firstOption: "have a golden voice",
-        secondOption: "have a silver tongue",
+        firstOption: {
+            text : "have a golden voice",
+            votes : ["joy_bawor"]
+        },
+        secondOption: {
+            text : "have a silver tongue",
+            votes :  []
+        },
         askedBy: "mary_poppins",
-        choseFirstOption: ["joy_bawor"],
-        choseSecondOption: []
     },
     "4xapq7mu783mul9t02ghx":{
         id: "4xapq7mu783mul9t02ghx",
-        firstOption: "be covered in fur",
-        secondOption: "be covered in scales",
+        firstOption: {
+            text : "be covered in fur",
+            votes : []
+        },
+        secondOption: {
+            text : "be covered in scales",
+            votes : []
+        },
         askedBy: "toby_adedipe",
-        choseFirstOption: [],
-        choseSecondOption: []
     },
     "83mulsjdiwefa9o43kz":{
         id: "83mulsjdiwefa9o43kz",
-        firstOption: "always be 10 minutes late",
-        secondOption: "alwaybs be 20 minutes early",
+        firstOption: {
+            text : "always be 10 minutes late",
+            votes : []
+        },
+        secondOption: {
+            text : "alwaybs be 20 minutes early",
+            votes : []
+        },
         askedBy: "joy_bawor",
-        choseFirstOption: [],
-        choseSecondOption: []
 
     },
     "sc73kzqi75rv1e0i6a":{
         id: "sc73kzqi75rv1e0i6a",
-        firstOption: "have all traffic lights you approach be green",
-        secondOption: "never have to stand in line again",
+        firstOption: {
+            text : "have all traffic lights you approach be green",
+            votes : []
+        },
+        secondOption: {
+            text : "never have to stand in line again",
+            votes : []
+        },
         askedBy: "toby_adedipe",
-        choseFirstOption: [],
-        choseSecondOption: ["mary_poppins"]
-
     },
     "szapa59g577x1oo45cup0d":{
         id: "szapa59g577x1oo45cup0d",
-        firstOption: "be able to see 10 minutes into your own future",
-        secondOption: "be able to see 10 minutes into the future of anyone but yourself",
+        firstOption: {
+            text: "be able to see 10 minutes into your own future",
+            votes: []
+        },
+        secondOption: {
+            text : "be able to see 10 minutes into the future of anyone but yourself",
+            votes : []
+        },
         askedBy: "joy_bawor",
-        choseFirstOption: [],
-        choseSecondOption: []
     }
 }
 
@@ -97,14 +120,18 @@ export function _getQuestions (){
     })
 }
 
-function formatQuestion ({ askedBy, firstOption, secondOption }){
+function formatQuestion ({ askedBy, firstOptionText, secondOptionText }){
     return {
         id: generateUID(),
-        firstOption,
-        secondOption,
         askedBy,
-        choseFirstOption: [],
-        choseSecondOption: [],
+        firstOption:{
+            text : firstOptionText,
+            votes : []
+        },
+        secondOption:{
+            text : secondOptionText,
+            votes : []
+        }
     }
 }
 
@@ -132,7 +159,7 @@ export function _saveQuestion(question){
     })
 }
 
-export function _saveAnswer ({ authedUser, qid, answer }){
+export function _saveAnswer ({ authedUser, id, answer }){
     return new Promise((res, rej)=>{
         setTimeout(()=>{
             users = {
@@ -141,16 +168,19 @@ export function _saveAnswer ({ authedUser, qid, answer }){
                     ...users[authedUser],
                     answered: {
                         ...users[authedUser].answered,
-                        [qid]: answer
+                        [id]: answer
                     }
                 }
             }
 
             questions = {
                 ...questions,
-                [qid]:{
-                    ...questions[qid],
-                    [answer]: questions[qid][answer].concat([authedUser])
+                [id]:{
+                    ...questions[id],
+                    [answer]: {
+                        ...questions[id][answer],
+                        votes : questions[id][answer].votes.concat([authedUser])
+                    }
                 }
             }
 

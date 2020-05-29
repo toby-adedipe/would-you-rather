@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../App.css';
 import { handleInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
+import Question from './Question';
 
 class App extends Component {
   componentDidMount(){
@@ -12,14 +14,17 @@ class App extends Component {
   render(){
     const { authedUser } = this.props
     return (
-      <div className="App">
+      <Router className="App">
         {this.props.loading
           ? null
           : (authedUser === null)
             ? <div>true</div>
-            : <Dashboard />
+            : <div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/question/:id' component={Question} />
+              </div>
         }
-      </div>
+      </Router>
     );
   
   }

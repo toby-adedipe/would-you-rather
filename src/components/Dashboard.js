@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 class DashBoard extends Component{
     render(){
         const { questions, answered, unanswered, users } = this.props;
-        console.log(questions);
-        console.log(answered);
-        console.log(unanswered);
+
         return(
             <div className='dashboard'>
                 <h2>Unanswered</h2>
@@ -21,10 +20,10 @@ class DashBoard extends Component{
                         </div>
                         <div className="poll-quest-section">
                             <h4>Would you rather?</h4>
-                            <p>{questions[id].firstOption}</p>
+                            <p>{questions[id].firstOption.text}</p>
                             <p> OR </p>
-                            <p>{questions[id].secondOption}</p>
-                            <button className="poll-btn">Answer poll</button>
+                            <p>{questions[id].secondOption.text}</p>
+                            <Link to={`/question/${id}`}><button className="primary-btn">Answer poll</button></Link>
                         </div>
                         
                     </div>
@@ -42,9 +41,9 @@ class DashBoard extends Component{
                         </div>
                         <div className="poll-quest-section">
                             <h4>Would you rather?</h4>
-                            <p>{questions[id].firstOption}</p>
+                            <p>{questions[id].firstOption.text}</p>
                             <p> OR </p>
-                            <p>{questions[id].secondOption}</p>
+                            <p>{questions[id].secondOption.text}</p>
                             <button className="poll-btn">Answer poll</button>
                         </div>
                         

@@ -37,7 +37,7 @@ body{
     border: 1px solid #1F385C;
     border-radius: 40px;
 }
-.poll-btn{
+.primary-btn{
     width: 80%;
     height: 44px;
     background-color: #1F385C;
@@ -47,8 +47,14 @@ body{
     cursor: pointer;
 }
 
-.poll-btn:hover{
+.primary-btn:hover:enabled{
     animation: btn-hover 1s ease-in alternate forwards;
+}
+
+.primary-btn:disabled{
+    background-color: #fff;
+    color: #c7c7c7;
+    border: 1px solid #c7c7c7;
 }
 
 @keyframes btn-hover{
@@ -58,8 +64,48 @@ body{
 }
 
 
+/*QUESTIONS PAGE*/ 
+.question-header{
+    text-align: center;
+}
+.question{
+    display: flex;
+    width: 80vw;
+    margin: .5rem auto .5rem auto;
+    background-color: #fff;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    color: #1F385C;
+}
+.question-quest-section{
+    width: 60%;
+    padding: 1rem;
+}
+.question-image-section{
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.question-image-section img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #1F385C;
+    border-radius: 40px;
+}
+.question-options{
+    margin: 0 0 .5rem 0;
+    display: block;
+}
+
+/* MEDIA QUERIES */
+
 @media (min-width: 600px){
     .dashboard{
         width: 60vw;
+    }
+    .question{
+        max-width: 30rem;
     }
 }
