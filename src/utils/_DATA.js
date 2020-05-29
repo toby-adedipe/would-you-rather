@@ -6,7 +6,7 @@ let users = {
             "xf0y6z903ryjaeogesdd253nd": "firstOption"
         },
         created: [],
-        avatar: "../images/tobs.png"
+        avatar: "/images/tobs.png"
     },
     joy_bawor:{
         id: "joy_bawor",
@@ -15,7 +15,7 @@ let users = {
             "9qoj738zxseoifhalx09afby": "firstOption"
         },
         created: [],
-        avatar: "../images/joy.png"
+        avatar: "/images/joy.png"
     },
     mary_poppins:{
         id: "mary_poppins",
@@ -24,7 +24,7 @@ let users = {
             "sc73kzqi75rv1e0i6a": "secondOption"
         },
         created: [],
-        avatar: "../images/mary.png"
+        avatar: "/images/mary.png"
     }
 }
 

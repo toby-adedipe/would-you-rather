@@ -5,9 +5,61 @@ body{
 
 .dashboard{
     display: block;
-    width: 60vw;
+    max-width: 80vw;
     margin: auto;
     background-color: #fff;
     color: #1F385C;
     border-radius: 4px;
+}
+
+.poll{
+    display: flex;
+    width: 90%;
+    margin: .5rem auto .5rem auto;
+    background-color: #fff;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+}
+
+.poll-quest-section, .poll-image-section{
+    text-align: center;
+    width: 50%;
+    padding: 1rem;
+}
+.poll-image-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.poll-image-section img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #1F385C;
+    border-radius: 40px;
+}
+.poll-btn{
+    width: 80%;
+    height: 44px;
+    background-color: #1F385C;
+    color: #fff;
+    border: 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.poll-btn:hover{
+    animation: btn-hover 1s ease-in alternate forwards;
+}
+
+@keyframes btn-hover{
+    100%{
+        background-color:#000;
+    }
+}
+
+
+@media (min-width: 600px){
+    .dashboard{
+        width: 60vw;
+    }
 }
