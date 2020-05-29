@@ -1,0 +1,13 @@
+body{
+    background-color: #1F385C;
+    color: #fff;
+}
+
+.dashboard{
+    display: block;
+    width: 60vw;
+    margin: auto;
+    background-color: #fff;
+    color: #1F385C;
+    border-radius: 4px;
+}
