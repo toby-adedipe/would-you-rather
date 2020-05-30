@@ -34,8 +34,12 @@ class Question extends Component{
         let totalVotes = questions[id].firstOption.votes.length +  questions[id].secondOption.votes.length
         let firstOptionVotes = questions[id].firstOption.votes.length
         let secondOptionVotes = questions[id].secondOption.votes.length
-        let firstPercentage = ((firstOptionVotes/totalVotes)*100)
-        let secondPercentage = 100-firstPercentage
+        let firstPercentage = firstOptionVotes === 0 
+                                ? 0
+                                : ((firstOptionVotes/totalVotes)*100)
+        let secondPercentage = secondOptionVotes === 0 
+                                ? 0
+                                : ((secondOptionVotes/totalVotes)*100)
 
         return(
             <div>

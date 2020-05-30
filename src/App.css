@@ -125,8 +125,7 @@ body{
 }
 
 .firstOption, .secondOption{
-    width: 15rem;
-    height: 5rem;
+    max-width: 15rem;
     margin: 1rem;
     padding: .5rem .5rem 0 .5rem;
     border: 1px solid #1F385C;
@@ -138,6 +137,8 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
+/* still make changes */
 .voted-icon{
     position: absolute;
     left: 15rem;
