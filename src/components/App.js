@@ -5,6 +5,8 @@ import { handleInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
 import Question from './Question';
+import NewQuestion from './NewQuestion';
+import { LoadingBar } from 'react-redux-loading';
 
 class App extends Component {
   componentDidMount(){
@@ -15,13 +17,15 @@ class App extends Component {
     const { authedUser } = this.props
     return (
       <Router className="App">
+        <LoadingBar />
         {this.props.loading
           ? null
           : (authedUser === null)
-            ? <div>true</div>
+            ? null
             : <div>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/question/:id' component={Question} />
+                <Route path='/add' component={NewQuestion} />
               </div>
         }
       </Router>

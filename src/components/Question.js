@@ -55,10 +55,10 @@ class Question extends Component{
         let secondOptionVotes = questions[id].secondOption.votes.length
         let firstPercentage = firstOptionVotes === 0 
                                 ? 0
-                                : Math.trunc((firstOptionVotes/totalVotes)*100)
+                                : Math.round((firstOptionVotes/totalVotes)*100)
         let secondPercentage = secondOptionVotes === 0 
                                 ? 0
-                                : Math.trunc((secondOptionVotes/totalVotes)*100)
+                                : Math.round((secondOptionVotes/totalVotes)*100)
 
         return(
             <div>
@@ -73,28 +73,28 @@ class Question extends Component{
                                 />
                             </div>
                             <div className="question-quest-section">
-                                    <h4>Would you Rather?</h4>
-                                    <form onSubmit={this.handleSubmit}>
-                                        <label className="question-options">
-                                            <input
-                                                type='radio'
-                                                name='options'
-                                                value='firstOption'
-                                                onChange={(e)=>this.handleChange(e.target.value)}
-                                            />
-                                            {questions[id].firstOption.text}
-                                        </label>
-                                        <label className="question-options">
-                                            <input
-                                                type='radio'
-                                                name='options'
-                                                value='secondOption'
-                                                onChange={(e)=>this.handleChange(e.target.value)}
-                                            />
-                                            {questions[id].secondOption.text}
-                                        </label>
-                                        <button type="submit" className="primary-btn" disabled={this.state.value.length ===0}>Submit</button>
-                                    </form>
+                                <h4>Would you Rather?</h4>
+                                <form onSubmit={this.handleSubmit}>
+                                    <label className="question-options">
+                                        <input
+                                            type='radio'
+                                            name='options'
+                                            value='firstOption'
+                                            onChange={(e)=>this.handleChange(e.target.value)}
+                                        />
+                                        {questions[id].firstOption.text}
+                                    </label>
+                                    <label className="question-options">
+                                        <input
+                                            type='radio'
+                                            name='options'
+                                            value='secondOption'
+                                            onChange={(e)=>this.handleChange(e.target.value)}
+                                        />
+                                        {questions[id].secondOption.text}
+                                    </label>
+                                    <button type="submit" className="primary-btn" disabled={this.state.value.length ===0}>Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -128,12 +128,10 @@ class Question extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 )}
-                
             </div>
         )
     }

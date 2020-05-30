@@ -84,6 +84,45 @@ body{
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
     color: #1F385C;
 }
+.question-div{
+    width: 80vw;
+    margin: .5rem auto .5rem auto;
+    background-color: #fff;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    color: #1F385C;
+    padding: 1rem 0 1rem 0;
+}
+
+.question-div input{
+    display: block;
+    width:80%;
+    height: 44px;
+    margin: auto;
+    border: 1px solid #1F385C;
+    border-radius: 0;
+    font-size: 1.25rem;
+}
+
+.submit-btn{
+    display: block;
+    width: 80%;
+    height: 44px;
+    background-color: #1F385C;
+    color: #fff;
+    border: 0;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 1rem auto 1rem auto;
+    font-size: 1rem;
+}
+.submit-btn:hover:enabled{
+    animation: btn-hover 1s ease-in alternate forwards;
+}
+
+
+.question-div p{
+    text-align: center;
+}
 
 .result{
     display: flex;
@@ -98,7 +137,7 @@ body{
     color: #1F385C;
 }
 
-.question-quest-section, .result-quest-secition{
+.question-quest-section, .result-quest-section{
     width: 60%;
     padding: 1rem;
 }
@@ -144,8 +183,9 @@ body{
     left: 15rem;
     top: -.9rem;
 }
-/* MEDIA QUERIES */
 
+
+/* MEDIA QUERIES */
 @media (min-width: 600px){
     .dashboard{
         width: 60vw;

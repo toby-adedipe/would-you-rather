@@ -1,5 +1,5 @@
 import { saveAnswer } from '../utils/api';
-import {showLoading, hideLoading, LoadingBar} from 'react-redux-loading'
+import {showLoading, hideLoading} from 'react-redux-loading'
 
 export const SAVE_ANSWER = 'SAVE_ANSWER'
 

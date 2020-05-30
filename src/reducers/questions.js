@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS } from '../actions/questions';
+import { RECEIVE_QUESTIONS, SAVE_QUESTIONS } from '../actions/questions';
 import { SAVE_ANSWER } from '../actions/answers';
 
 export default function questions (state={}, action){
@@ -7,6 +7,11 @@ export default function questions (state={}, action){
             return{
                 ...state,
                 ...action.questions
+            }
+        case SAVE_QUESTIONS:
+            return{
+                ...state,
+                [action.question.id]: action.question
             }
         case SAVE_ANSWER:
             return{
