@@ -12,7 +12,7 @@ function saveAnswerAction({authedUser, id, answer}){
     }
 }
 
-export function handleSaveAnswer(authedUser, id, answer){
+export function handleSaveAnswer({authedUser, id, answer}){
     return (dispatch)=>{
         dispatch(showLoading());
         return saveAnswer({authedUser, id, answer})
