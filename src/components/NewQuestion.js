@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveQuestion } from '../actions/questions'
+import { withRouter } from 'react-router-dom';
+
+
 class NewQuestion extends Component{
     state={
         firstOption:'',
         secondOption:'',
     }
+
     constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFirstOptionChange = this.handleFirstOptionChange.bind(this);
         this.handleSecondOptionChange = this.handleSecondOptionChange.bind(this);
     }
+
     handleFirstOptionChange(e){
         const firstOption = e.target.value
 
@@ -19,6 +24,7 @@ class NewQuestion extends Component{
             firstOption
         }))
     }
+
     handleSecondOptionChange(e){
         const secondOption = e.target.value
 
@@ -36,9 +42,10 @@ class NewQuestion extends Component{
                 firstOption: '',
                 secondOption: ''
             }))
-
-        
+            .then(this.props.history.push('/'))
     }
+
+
     render(){
         const { firstOption, secondOption } = this.state
         return(
@@ -70,9 +77,11 @@ class NewQuestion extends Component{
         )
     }
 }
+
 function mapStateToProps({authedUser}){
     return{
         authedUser
     }
 }
-export default connect(mapStateToProps)(NewQuestion);
+
+export default withRouter(connect(mapStateToProps)(NewQuestion));

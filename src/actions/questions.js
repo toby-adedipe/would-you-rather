@@ -19,10 +19,10 @@ function saveQuestionAction(question){
     }
 }
 
-export function handleSaveQuestion(askedBy, firstOption, secondOption){
+export function handleSaveQuestion(askedBy, firstOptionText, secondOptionText){
     return (dispatch)=>{
         dispatch(showLoading())
-        return saveQuestion({askedBy, firstOption, secondOption})
+        return saveQuestion({askedBy, firstOptionText, secondOptionText})
             .then((question)=>dispatch(saveQuestionAction(question)))
             .then(()=>dispatch(hideLoading()))
     }
