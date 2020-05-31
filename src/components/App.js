@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../App.css';
 import { handleInitialData } from '../actions/shared';
@@ -8,7 +8,8 @@ import Dashboard from './Dashboard';
 import Question from './Question';
 import NewQuestion from './NewQuestion';
 import Leaderboard from './Leaderboard';
-import { LoadingBar } from 'react-redux-loading';
+import Login from './Login';
+import LoadingBar from 'react-redux-loading';
 
 class App extends Component {
   componentDidMount(){
@@ -19,19 +20,21 @@ class App extends Component {
     const { authedUser } = this.props
     return (
       <Router className="App">
-        {this.props.loading
-          ? null
-          : (authedUser === null)
+        <Fragment>
+          <LoadingBar />
+          {this.props.loading
             ? null
-            : <div>
-                <Nav />
-                <LoadingBar />
-                <Route path='/' exact component={Dashboard} />
-                <Route path='/question/:id' component={Question} />
-                <Route path='/add' component={NewQuestion} />
-                <Route path='/leaderboard' component={Leaderboard} />
-              </div>
-        }
+            : (authedUser === null)
+              ? <Route component={Login}></Route>
+              : <div>
+                  <Nav />
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/question/:id' component={Question} />
+                  <Route path='/add' component={NewQuestion} />
+                  <Route path='/leaderboard' component={Leaderboard} />
+                </div>
+          }
+        </Fragment>
       </Router>
     );
   

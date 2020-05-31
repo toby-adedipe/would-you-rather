@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class DashBoard extends Component{
     render(){
@@ -8,7 +8,7 @@ class DashBoard extends Component{
 
         return(
             <div className='dashboard tabs'>
-                <input type='radio' id='unanswered' name='tab-group' checked />
+                <input type='radio' id='unanswered' name='tab-group' defaultChecked />
                 <label htmlFor='unanswered'>UNANSWERED</label>
                 <input type='radio' id='answered' name='tab-group' />
                 <label htmlFor='answered'>ANSWERED</label>

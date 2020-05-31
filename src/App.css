@@ -6,10 +6,58 @@ a:active{
     background-color: #fff;
     color: #1F385C;
 }
+a:hover{
+    background-color: #fff;
+    color: #1F385C;
+}
 body{
     background-color: #1F385C;
     color: #fff;
 }
+/*LOGIN VIEWS*/
+
+.login-tab{
+    max-width: 30rem;
+    height: 26rem;
+    background-color: #fff;
+    color: #1F385C;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+}
+.logo{
+    max-width: 12rem;
+    display: block;
+    margin: auto;
+}
+
+.login-header{
+    text-align: center;
+}
+.login-tab .select{
+    margin: .25rem;
+}
+.login-btn{
+    display: block;
+    width: 50%;
+    height: 44px;
+    margin: auto;
+    background-color: #1F385C;
+    color: #fff;
+    border: 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.login-btn:hover:enabled{
+    animation: btn-hover 1s ease-in alternate forwards;
+}
+
+.login-btn:disabled{
+    background-color: #fff;
+    color: #c7c7c7;
+    border: 1px solid #c7c7c7;
+}
+
 /* NAVBAR STYLES */
 .nav-container{
     height: 80px;
@@ -52,6 +100,7 @@ body{
     border: 0;
     border-radius: 5px;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 /* DASHBOARD STYLES */
@@ -330,7 +379,15 @@ body{
     border-top: 1px solid #999;
     padding: 12px;
 }
-
+/* FOOTER */
+.footer{
+    width: 400px;
+    position: fixed;
+    left: 50%;
+    margin-left: -200px;
+    bottom: 0;
+    text-align: center;
+}
 
 /* MEDIA QUERIES */
 @media (min-width: 600px){

@@ -5,7 +5,7 @@ let users = {
         answered: {
             "xf0y6z903ryjaeogesdd253nd": "firstOption"
         },
-        created: [],
+        created: ["sc73kzqi75rv1e0i6a", "4xapq7mu783mul9t02ghx"],
         avatar: "/images/tobs.png"
     },
     joy_bawor:{
@@ -14,7 +14,7 @@ let users = {
         answered: {
             "9qoj738zxseoifhalx09afby": "firstOption"
         },
-        created: [],
+        created: ["szapa59g577x1oo45cup0d", "sc73kzqi75rv1e0i6a"],
         avatar: "/images/joy.png"
     },
     mary_poppins:{
@@ -23,7 +23,7 @@ let users = {
         answered: {
             "sc73kzqi75rv1e0i6a": "secondOption"
         },
-        created: [],
+        created: ["9qoj738zxseoifhalx09afby", "xf0y6z903ryjaeogesdd253nd"],
         avatar: "/images/mary.png"
     }
 }
@@ -86,7 +86,7 @@ let questions = {
         },
         secondOption: {
             text : "never have to stand in line again",
-            votes : []
+            votes : ['mary_poppins']
         },
         askedBy: "toby_adedipe",
     },

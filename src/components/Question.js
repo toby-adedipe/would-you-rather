@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/answers';
 import voted from './voted.svg'
+import Footer from './Footer';
 
 class Question extends Component{
     state={
@@ -133,15 +134,15 @@ class Question extends Component{
                                             />
                                             <p>{questions[id].secondOption.text}</p>
                                             <p><span>{`${secondPercentage}%`}</span> <span>{`${secondOptionVotes} of ${totalVotes} total votes`}</span></p>
-                                            
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 )}
+                { this.state.hasVoted && <Footer /> }
             </div>
         )
     }

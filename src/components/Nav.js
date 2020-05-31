@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setAuthedUser } from '../actions/autheduser';
 
 class Nav extends (Component){
+    handleClick = (e)=>{
+        const { dispatch } = this.props
+        e.preventDefault()
+
+        dispatch(setAuthedUser(null))
+    }
+
     render(){
         const { authedUser, users } = this.props;
         console.log(authedUser, users)
@@ -22,7 +30,7 @@ class Nav extends (Component){
                             className='nav-avatar'
                         />
                         <p>{users[authedUser].name}</p>
-                        <button className='sign-out'>Sign out</button>
+                        <button className='sign-out' onClick={this.handleClick}>Sign out</button>
                     </div>
                 </div>
             </div>

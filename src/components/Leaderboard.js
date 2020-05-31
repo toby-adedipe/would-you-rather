@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class Leaderboard extends Component {
     render(){
-        const { users, questions, userIds } = this.props
+        const { users, userIds } = this.props
         console.log(userIds)
         return(
             <div>
