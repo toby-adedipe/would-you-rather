@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../App.css';
 import { handleInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion';
 import Leaderboard from './Leaderboard';
 import Login from './Login';
 import LoadingBar from 'react-redux-loading';
+import ErrorPage from './ErrorPage';
 
 class App extends Component {
   componentDidMount(){
@@ -28,10 +29,15 @@ class App extends Component {
               ? <Route component={Login}></Route>
               : <div>
                   <Nav />
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:id' component={Question} />
-                  <Route path='/add' component={NewQuestion} />
-                  <Route path='/leaderboard' component={Leaderboard} />
+                  <Switch>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/question/:id' component={Question} />
+                    <Route path='/add' component={NewQuestion} />
+                    <Route path='/leaderboard' component={Leaderboard} />
+
+                    <Route component={ErrorPage} />
+                  </Switch>
+                  
                 </div>
           }
         </Fragment>

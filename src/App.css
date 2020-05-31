@@ -388,7 +388,12 @@ body{
     bottom: 0;
     text-align: center;
 }
-
+.error-page h1, .error-page p{
+    display: inline;
+}
+.error-page{
+    text-align: center;
+}
 /* MEDIA QUERIES */
 @media (min-width: 600px){
     .dashboard{
