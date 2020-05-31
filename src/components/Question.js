@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/answers';
-import voted from './voted.jpg'
+import voted from './voted.svg'
 
 class Question extends Component{
     state={
@@ -60,6 +60,9 @@ class Question extends Component{
                                 ? 0
                                 : Math.round((secondOptionVotes/totalVotes)*100)
 
+        const votedFirstOption = questions[id].firstOption.votes.includes(authedUser)
+        const votedSecondOption = questions[id].secondOption.votes.includes(authedUser)
+
         return(
             <div>
                 { !this.state.hasVoted && (
@@ -113,20 +116,27 @@ class Question extends Component{
                                         />
                                     </div>
                                     <div className='result-quest-section'>
-                                        <div className="firstOption">
+                                        <div className={votedFirstOption? 'voted' : 'firstOption'}>
                                             <img
                                                 src={voted}
                                                 alt="voted-icon"
-                                                className='voted-icon'
+                                                className={votedFirstOption ? 'voted-icon' : 'voted-icon-hidden'}
                                             />
                                             <p>{questions[id].firstOption.text}</p>
                                             <p><span>{`${firstPercentage}%`}</span> <span>{`${firstOptionVotes} of ${totalVotes} total votes`}</span></p>
                                         </div>
-                                        <div className="secondOption">
+                                        <div className={votedSecondOption ? 'voted' : 'secondOption'}>
+                                            <img
+                                                src={voted}
+                                                alt="voted-icon"
+                                                className={votedSecondOption ? 'voted-icon' : 'voted-icon-hidden'}
+                                            />
                                             <p>{questions[id].secondOption.text}</p>
                                             <p><span>{`${secondPercentage}%`}</span> <span>{`${secondOptionVotes} of ${totalVotes} total votes`}</span></p>
+                                            
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
