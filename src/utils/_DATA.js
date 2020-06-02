@@ -40,6 +40,7 @@ let questions = {
             votes : []
         },
         askedBy: "mary_poppins",
+        timestamp: 1201043995650,
     },
     "9qoj738zxseoifhalx09afby":{
         id: "9qoj738zxseoifhalx09afby",
@@ -52,6 +53,7 @@ let questions = {
             votes :  []
         },
         askedBy: "mary_poppins",
+        timestamp: 1202043995650,
     },
     "4xapq7mu783mul9t02ghx":{
         id: "4xapq7mu783mul9t02ghx",
@@ -64,6 +66,7 @@ let questions = {
             votes : []
         },
         askedBy: "toby_adedipe",
+        timestamp: 1203043995650,
     },
     "83mulsjdiwefa9o43kz":{
         id: "83mulsjdiwefa9o43kz",
@@ -76,6 +79,7 @@ let questions = {
             votes : []
         },
         askedBy: "joy_bawor",
+        timestamp: 1204043995650,
 
     },
     "sc73kzqi75rv1e0i6a":{
@@ -89,6 +93,7 @@ let questions = {
             votes : ['mary_poppins']
         },
         askedBy: "toby_adedipe",
+        timestamp: 1205043995650,
     },
     "szapa59g577x1oo45cup0d":{
         id: "szapa59g577x1oo45cup0d",
@@ -101,6 +106,7 @@ let questions = {
             votes : []
         },
         askedBy: "joy_bawor",
+        timestamp: 1206043995650,
     }
 }
 
@@ -123,6 +129,7 @@ export function _getQuestions (){
 function formatQuestion ({ askedBy, firstOptionText, secondOptionText }){
     return {
         id: generateUID(),
+        timestamp: Date.now(),
         askedBy,
         firstOption:{
             text : firstOptionText,

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class DashBoard extends Component{
     render(){
         const { questions, answered, unanswered, users } = this.props;
-
+        console.log(answered)
         return(
             <div className='dashboard tabs'>
                 <input type='radio' id='unanswered' name='tab-group' defaultChecked />
@@ -64,11 +64,11 @@ class DashBoard extends Component{
     }
 }
 function mapStateToProps ({questions, users, authedUser}){
-    let answered = Object.keys(users[authedUser].answered)
+    let answered = Object.keys(users[authedUser].answered).sort((a, b)=> users[authedUser].answered[b].timeStamp - users[authedUser].answered[a].timeStamp)
 
     let unanswered = Object.keys(questions).filter((id)=>(
         !answered.includes(id)
-    ))
+    )).sort((a, b)=> b.timeStamp - a.timeStamp).reverse()
 
     return{
         users,

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/answers';
 import voted from './voted.svg'
 import Footer from './Footer';
+import ErrorPage from './ErrorPage';
 
 class Question extends Component{
     state={
@@ -37,9 +38,9 @@ class Question extends Component{
     }
 
     hasVoted(){
-        const { id, authedUser, questions } = this.props
+        const { authedUser, question } = this.props
 
-        questions[id].firstOption.votes.includes(authedUser) || questions[id].secondOption.votes.includes(authedUser)
+        question.firstOption.votes.includes(authedUser) || question.secondOption.votes.includes(authedUser)
             ? this.setState(()=>({
                 hasVoted: true
             }))
@@ -49,114 +50,138 @@ class Question extends Component{
     }
 
     render(){
-        const { id, users, questions, authedUser } = this.props;
 
-        let totalVotes = questions[id].firstOption.votes.length +  questions[id].secondOption.votes.length
-        let firstOptionVotes = questions[id].firstOption.votes.length
-        let secondOptionVotes = questions[id].secondOption.votes.length
-        let firstPercentage = firstOptionVotes === 0 
-                                ? 0
-                                : Math.round((firstOptionVotes/totalVotes)*100)
-        let secondPercentage = secondOptionVotes === 0 
-                                ? 0
-                                : Math.round((secondOptionVotes/totalVotes)*100)
+        const { 
+            users, 
+            question,
+            totalVotes,
+            firstPercentage,
+            secondPercentage,
+            firstOptionVotes,
+            secondOptionVotes,    
+            votedFirstOption,
+            votedSecondOption, } = this.props;
 
-        const votedFirstOption = questions[id].firstOption.votes.includes(authedUser)
-        const votedSecondOption = questions[id].secondOption.votes.includes(authedUser)
-
-        return(
-            <div>
-                { !this.state.hasVoted && (
-                    <div>
-                        <h3 className="question-header">{users[questions[id].askedBy].name} wants to know</h3>
-                        <div className="question">
-                            <div className="question-image-section">
-                                <img
-                                    src={users[questions[id].askedBy].avatar}
-                                    alt={`${users[questions[id].askedBy].name}'s avatar`}
-                                />
-                            </div>
-                            <div className="question-quest-section">
-                                <h4>Would you Rather?</h4>
-                                <form onSubmit={this.handleSubmit}>
-                                    <label className="question-options">
-                                        <input
-                                            type='radio'
-                                            name='options'
-                                            value='firstOption'
-                                            onChange={(e)=>this.handleChange(e.target.value)}
-                                        />
-                                        {questions[id].firstOption.text}
-                                    </label>
-                                    <label className="question-options">
-                                        <input
-                                            type='radio'
-                                            name='options'
-                                            value='secondOption'
-                                            onChange={(e)=>this.handleChange(e.target.value)}
-                                        />
-                                        {questions[id].secondOption.text}
-                                    </label>
-                                    <button type="submit" className="primary-btn" disabled={this.state.value.length ===0}>Submit</button>
-                                </form>
+        if (!question){
+            return(
+                <ErrorPage />
+            )
+        }else{
+            return(
+                <div>
+                    { !this.state.hasVoted && (
+                        <div>
+                            <h3 className="question-header">{users[question.askedBy].name} wants to know</h3>
+                            <div className="question">
+                                <div className="question-image-section">
+                                    <img
+                                        src={users[question.askedBy].avatar}
+                                        alt={`${users[question.askedBy].name}'s avatar`}
+                                    />
+                                </div>
+                                <div className="question-quest-section">
+                                    <h4>Would you Rather?</h4>
+                                    <form onSubmit={this.handleSubmit}>
+                                        <label className="question-options">
+                                            <input
+                                                type='radio'
+                                                name='options'
+                                                value='firstOption'
+                                                onChange={(e)=>this.handleChange(e.target.value)}
+                                            />
+                                            {question.firstOption.text}
+                                        </label>
+                                        <label className="question-options">
+                                            <input
+                                                type='radio'
+                                                name='options'
+                                                value='secondOption'
+                                                onChange={(e)=>this.handleChange(e.target.value)}
+                                            />
+                                            {question.secondOption.text}
+                                        </label>
+                                        <button type="submit" className="primary-btn" disabled={this.state.value.length ===0}>Submit</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
-                { this.state.hasVoted && (
-                    <div>
+                    )}
+                    { this.state.hasVoted && (
                         <div>
-                            <h3 className='result-header'>Asked By {users[questions[id].askedBy].name}</h3>
-                            <div className='result-div'>
-                                <h4 className='result-div-header'>Results</h4>
-                                <div className='result'>
-                                    <div className='result-image-section'>
-                                        <img
-                                            src={users[questions[id].askedBy].avatar}
-                                            alt={`${users[questions[id].askedBy].name}'s avatar`}
-                                        />
-                                    </div>
-                                    <div className='result-quest-section'>
-                                        <div className={votedFirstOption? 'voted' : 'firstOption'}>
-                                            <img
-                                                src={voted}
-                                                alt="voted-icon"
-                                                className={votedFirstOption ? 'voted-icon' : 'voted-icon-hidden'}
+                            <div>
+                                <h3 className='result-header'>Asked By {users[question.askedBy].name}</h3>
+                                <div className='result-div'>
+                                    <h4 className='result-div-header'>Results</h4>
+                                    <div className='result'>
+                                        <div className='result-image-section'>
+                                                <img
+                                                src={users[question.askedBy].avatar}
+                                                alt={`${users[question.askedBy].name}'s avatar`}
                                             />
-                                            <p>{questions[id].firstOption.text}</p>
-                                            <p><span>{`${firstPercentage}%`}</span> <span>{`${firstOptionVotes} of ${totalVotes} total votes`}</span></p>
                                         </div>
-                                        <div className={votedSecondOption ? 'voted' : 'secondOption'}>
-                                            <img
-                                                src={voted}
-                                                alt="voted-icon"
-                                                className={votedSecondOption ? 'voted-icon' : 'voted-icon-hidden'}
-                                            />
-                                            <p>{questions[id].secondOption.text}</p>
-                                            <p><span>{`${secondPercentage}%`}</span> <span>{`${secondOptionVotes} of ${totalVotes} total votes`}</span></p>
+                                        <div className='result-quest-section'>
+                                            <div className={votedFirstOption? 'voted' : 'firstOption'}>
+                                                <img
+                                                    src={voted}
+                                                    alt="voted-icon"
+                                                    className={votedFirstOption ? 'voted-icon' : 'voted-icon-hidden'}
+                                                />
+                                                <p>{question.firstOption.text}</p>
+                                                <p><span>{`${firstPercentage}%`}</span> <span>{`${firstOptionVotes} of ${totalVotes} total votes`}</span></p>
+                                            </div>
+                                            <div className={votedSecondOption ? 'voted' : 'secondOption'}>
+                                                <img
+                                                    src={voted}
+                                                    alt="voted-icon"
+                                                    className={votedSecondOption ? 'voted-icon' : 'voted-icon-hidden'}
+                                                />
+                                                <p>{question.secondOption.text}</p>
+                                                <p><span>{`${secondPercentage}%`}</span> <span>{`${secondOptionVotes} of ${totalVotes} total votes`}</span></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                )}
-                { this.state.hasVoted && <Footer /> }
-            </div>
-        )
+                    )}
+                    { this.state.hasVoted && <Footer /> }
+                </div>
+            )
+                 
+        }
     }
 }
 
 function mapStateToProps({ questions, users, authedUser }, props){
     const { id } = props.match.params
 
+    const question = questions[id]
+
+    const totalVotes = question.firstOption.votes.length +  question.secondOption.votes.length
+    const firstOptionVotes = question.firstOption.votes.length
+    const secondOptionVotes = question.secondOption.votes.length
+    const firstPercentage = firstOptionVotes === 0 
+                            ? 0
+                            : Math.round((firstOptionVotes/totalVotes)*100)
+    const secondPercentage = secondOptionVotes === 0 
+                            ? 0
+                            : Math.round((secondOptionVotes/totalVotes)*100)
+
+    const votedFirstOption = question.firstOption.votes.includes(authedUser)
+    const votedSecondOption = question.secondOption.votes.includes(authedUser)
 
     return{
         id,
         users,
-        questions,
+        question,
         authedUser,
+        totalVotes,
+        firstPercentage,
+        secondPercentage,
+        firstOptionVotes,
+        secondOptionVotes,
+        votedFirstOption,
+        votedSecondOption,
     }
 }
 

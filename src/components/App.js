@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import '../App.css';
 import { handleInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
@@ -11,6 +11,16 @@ import Leaderboard from './Leaderboard';
 import Login from './Login';
 import LoadingBar from 'react-redux-loading';
 import ErrorPage from './ErrorPage';
+
+const { authedUser } = this.props
+
+const PrivateRoute=({ component:Component, ...rest})=>(
+    <Route {...rest} render={(props)=>(
+        authedUser === null
+            ? <Redirect component={Login} />
+            : <Component { ...props} />
+    )} />
+)
 
 class App extends Component {
   componentDidMount(){
@@ -31,7 +41,7 @@ class App extends Component {
                   <Nav />
                   <Switch>
                     <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:id' component={Question} />
+                    <PrivateRoute path='/question/:id' component={Question} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={Leaderboard} />
 
