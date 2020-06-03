@@ -12,9 +12,8 @@ import Login from './Login';
 import LoadingBar from 'react-redux-loading';
 import ErrorPage from './ErrorPage';
 
-const { authedUser } = this.props
 
-const PrivateRoute=({ component:Component, ...rest})=>(
+const PrivateRoute=({ component:Component, authedUser, ...rest})=>(
     <Route {...rest} render={(props)=>(
         authedUser === null
             ? <Redirect component={Login} />
@@ -45,7 +44,7 @@ class App extends Component {
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={Leaderboard} />
 
-                    <Route component={ErrorPage} />
+                    <Route path='/not-found' component={ErrorPage} />
                   </Switch>
                   
                 </div>
