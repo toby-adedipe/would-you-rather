@@ -5,8 +5,7 @@ class Leaderboard extends Component {
     render(){
         const { userIds } = this.props
         return(
-            <div>
-                <div>
+                <div className="leaderboard">
                     <h3 className='question-header'>Leaderboard</h3>
                     <div>
                         {userIds.map((user)=>(
@@ -31,7 +30,6 @@ class Leaderboard extends Component {
                         ))}
                     </div>
                 </div>
-            </div>
         )
     }
 }

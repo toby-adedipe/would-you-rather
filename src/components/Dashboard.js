@@ -50,7 +50,7 @@ class DashBoard extends Component{
                                     <p>{questions[id].firstOption.text}</p>
                                     <p> OR </p>
                                     <p>{questions[id].secondOption.text}</p>
-                                    <Link to={`/question/${id}`}><button className="primary-btn">View Answer</button></Link>
+                                    <Link to={`/question/${id}`}><button className="primary-btn answered">View Answer</button></Link>
                                 </div>
                                 
                             </div>

@@ -14,11 +14,13 @@ body{
     background-color: #1F385C;
     color: #fff;
 }
-
-
+h4{
+    margin: .5rem 0 0 0;
+}
 /*LOGIN VIEWS*/
 
 .login-tab{
+    width: 90%;
     max-width: 30rem;
     height: 26rem;
     background-color: #fff;
@@ -49,6 +51,7 @@ body{
     border: 0;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 4px;
 }
 .login-btn:hover:enabled{
     animation: btn-hover 1s ease-in alternate forwards;
@@ -87,6 +90,9 @@ body{
 }
 .user-info{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 .user-info img, .user-info p{
     margin-right: .5rem;
@@ -121,17 +127,18 @@ body{
 }
 
 .poll{
-    display: flex;
     width: 90%;
     margin: .5rem auto .5rem auto;
     background-color: #fff;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    border-radius: 4px;
 }
 
 .poll-quest-section, .poll-image-section{
     text-align: center;
-    width: 50%;
-    padding: 1rem;
+}
+.poll-quest-section{
+    padding-bottom: 1rem;
 }
 
 .poll-image-section{
@@ -139,13 +146,13 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
-
-.poll-image-section img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid #1F385C;
-    border-radius: 40px;
+/* HIDE IMAGES IN MOBILE VIEWS */
+.poll-image-section img,
+.result-image-section img,
+.question-image-section img{
+    display: none;
 }
 
 .primary-btn{
@@ -156,8 +163,11 @@ body{
     border: 0;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 4px;
 }
-
+.answered{
+    background-color: #21C7A8;
+}
 .primary-btn:hover:enabled{
     animation: btn-hover 1s ease-in alternate forwards;
 }
@@ -187,18 +197,20 @@ body{
 
 .result-div{
     width: 80vw;
-    margin: .5rem auto .5rem auto;
+    margin: 4rem auto .5rem auto;
     background-color: #fff;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
     color: #1F385C;
+    border-radius: 4px;
 }
 .question-div{
     width: 80vw;
-    margin: .5rem auto .5rem auto;
+    margin: 4rem auto .5rem auto;
     background-color: #fff;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
     color: #1F385C;
     padding: .1rem 0 .1rem 0;
+    border-radius: 4px;
 }
 
 .question-div input{
@@ -207,7 +219,7 @@ body{
     height: 44px;
     margin: auto;
     border: 1px solid #1F385C;
-    border-radius: 0;
+    border-radius: 4px;
     font-size: 1.25rem;
 }
 
@@ -222,6 +234,7 @@ body{
     cursor: pointer;
     margin: 1rem auto 1rem auto;
     font-size: 1rem;
+    border-radius: 4px;
 }
 .submit-btn:hover:enabled{
     animation: btn-hover 1s ease-in alternate forwards;
@@ -239,42 +252,37 @@ body{
 .question {
     display: flex;
     width: 80vw;
-    margin: 2rem auto;
+    margin: 4rem auto;
     background-color: #fff;
     box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
     color: #1F385C;
+    border-radius: 4px;
 }
 
 .question-quest-section, .result-quest-section{
-    width: 60%;
+    width: 100%;
     padding: 0 .75rem;
     margin: 0 0 .75rem 0;
 }
-
-.question-image-section, .result-image-section{
+.question-quest-section form{
     display: flex;
-    width: 40%;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 0 .75rem;
+    justify-content: center;
+    flex-direction: column;
 }
-
-.question-image-section img, .result-image-section img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid #1F385C;
-    border-radius: 40px;
+.question-quest-section h4{
+    text-align: center;
 }
 
 .question-options, .result-options{
     margin: 0 0 .5rem 0;
+    width: 100%;
     display: block;
 }
 
 .firstOption, .secondOption{
     max-width: 15rem;
-    margin: 1rem;
+    margin: 1rem auto;
     padding: .5rem .5rem 0 .5rem;
     border: 1px solid #1F385C;
     border-radius: 4px;
@@ -288,7 +296,7 @@ body{
 /* VOTED STYLES */
 .voted{
     max-width: 15rem;
-    margin: 1rem;
+    margin: 1rem auto;
     padding: .5rem .5rem 0 .5rem;
     border: 1px solid #47A584;
     border-radius: 4px;
@@ -316,6 +324,9 @@ body{
     text-align: center;
     padding: .5rem 0 0 0;
     margin: .5rem 0 0 0;
+}
+.leaderboard{
+    margin-top: 5.5rem;
 }
 .leaderboard-div{
     width: 80vw;
@@ -527,5 +538,48 @@ body{
     }
     .question, .result-div, .question-div, .leaderboard-div{
         max-width: 30rem;
+    }
+    .poll{
+        display: flex;
+    }
+    .poll-image-section img, .result-image-section img{
+        width: 150px;
+        height: 150px;
+        border: 1px solid #1F385C;
+        border-radius: 40px;
+        display: inline-block;
+    }
+    
+    .poll-quest-section, .poll-image-section{
+        width: 50%
+    }
+    .poll-quest-section{
+        padding-right: 1rem;
+    }
+    .poll-image-section{
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+    .question-quest-section, .result-quest-section{
+        width: 60%;
+    }
+    .question-image-section, .result-image-section{
+        display: flex;
+        width: 40%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 .75rem;
+    }
+    .question-image-section{
+        padding: .75rem;
+    }
+    .question-image-section img{
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        border: 1px solid #1F385C;
+        border-radius: 40px;
+        display: inline-block;
     }
 }
