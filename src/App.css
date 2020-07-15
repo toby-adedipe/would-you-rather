@@ -14,6 +14,8 @@ body{
     background-color: #1F385C;
     color: #fff;
 }
+
+
 /*LOGIN VIEWS*/
 
 .login-tab{
@@ -58,27 +60,33 @@ body{
     border: 1px solid #c7c7c7;
 }
 
+
 /* NAVBAR STYLES */
 .nav-container{
+    background-color: #1F385C;
     height: 80px;
+    width: 100vw;
     box-shadow: 0 3px 6px rgba(0,0,0, 0.16);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
 }
 .navbar{
-    height: 100%;
-    width: 80%;
     margin: 0 auto;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 5vw;
 }
-/* .nav-links{
-    margin: 1.5rem 0 0 0;
+
+.nav-links>a{
+    margin-right: 1rem;
 }
 .user-info{
-    margin: 1.2rem 0 0 0;
-} */
-.nav-links>a{
-    margin-right: 1rem
+    display: flex;
 }
 .user-info img, .user-info p{
     margin-right: .5rem;
@@ -89,9 +97,7 @@ body{
     border: 1px solid #1F385C;
     border-radius: 10px;
 }
-.user-info{
-    display: flex;
-}
+
 .sign-out{
     background-color: #C63399;
     color: #fff;
@@ -104,10 +110,11 @@ body{
 }
 
 /* DASHBOARD STYLES */
+
 .dashboard{
     display: block;
     max-width: 80vw;
-    margin: 2rem auto;
+    margin: 100px auto;
     background-color: #fff;
     color: #1F385C;
     border-radius: 4px;
@@ -394,8 +401,127 @@ body{
 .error-page{
     text-align: center;
 }
+/* HAMBURGER STYLES */
+.nav-links{
+    visibility: hidden;
+}
+#toggler{
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    left: 5vw;
+    z-index: 3;
+    cursor: pointer;
+    margin:0;
+    opacity:0; 
+}
+.hamburger{
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.16);
+    position: fixed;
+    left: 5vw;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    z-index: 2;
+}
+.hamburger>div{
+    position: relative;
+    width: 80%;
+    height: 2px;
+    display: flex;
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+}
+.hamburger>div:before,
+.hamburger>div:after{
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    display: flex;
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+.hamburger>div:after{
+    top: 10px;
+}
+.sidebar{
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    left: -50%;
+    top: 0;
+    background-color: #1F385C;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    display: flex;
+    align-items: center;
+    transition: all .6s ease;
+    z-index: 1;
+}
+.sidebar-links{
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 0 0 2rem;
+}
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 200vh;
+    background-color: rgba(0,0,0, 0.3);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .6s ease;
+    visibility: hidden;
+}
+/* ANIMATE TOGGLER */
+#toggler:checked + .hamburger>div{
+    transform: rotate(45deg);
+}
+#toggler:checked +.hamburger>div:before,
+#toggler:checked +.hamburger>div:after{
+    top:0;
+    transform: rotate(90deg)
+}
+/* rotate on hover */
+#toggler:checked:hover + .hamburger>div{
+    transform: rotate(135deg)
+}
+/* SHOW MENU */
+#toggler:checked ~ .sidebar{
+    left: 0;
+    transition: all .6s ease;
+}
+#toggler:checked ~ .overlay{
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .6s ease;
+}
 /* MEDIA QUERIES */
-@media (min-width: 600px){
+@media (min-width: 640px){
+    #toggler,
+    .hamburger{
+        visibility: hidden;
+    }
+    .sidebar{
+        display: none;
+    }
+    .nav-links{
+        visibility: visible;
+    }
     .dashboard{
         width: 60vw;
     }

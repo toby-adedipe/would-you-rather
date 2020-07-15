@@ -19,6 +19,16 @@ class Nav extends (Component){
 
         return(
             <div className='nav-container'>
+                <input type="checkbox" id="toggler" />
+                <div className="hamburger"><div></div></div>
+                <div className="sidebar">
+                    <div className='sidebar-links'>
+                        <Link to='/'>Home</Link>
+                        <Link to='/add'>New Poll</Link>
+                        <Link to='/leaderboard'>Leaderboard</Link>
+                    </div>
+                </div>
+                <div className="overlay"></div>
                 <div className='navbar'>
                     <div className='nav-links'>
                         <Link to='/'>Home</Link>
