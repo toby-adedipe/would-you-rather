@@ -77,22 +77,21 @@ h4{
     align-items: center;
 }
 .navbar{
-    margin: 0 auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 5vw;
 }
 
 .nav-links>a{
     margin-right: 1rem;
 }
 .user-info{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    right: 10vw;
 }
 .user-info img, .user-info p{
     margin-right: .5rem;
@@ -379,7 +378,7 @@ h4{
     display: block;
 }
 .dashboard input + label{
-    width: 42%;
+    width: 40%;
     border: 1px solid #999;
     background: #eee;
     padding: 4px 12px;
@@ -523,6 +522,9 @@ h4{
 }
 /* MEDIA QUERIES */
 @media (min-width: 640px){
+    .dashboard input + label{
+        width: 42%;
+    }
     #toggler,
     .hamburger{
         visibility: hidden;
@@ -532,6 +534,7 @@ h4{
     }
     .nav-links{
         visibility: visible;
+        margin-left: 5vw;
     }
     .dashboard{
         width: 60vw;
