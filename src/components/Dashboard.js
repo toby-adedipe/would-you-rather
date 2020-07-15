@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class DashBoard extends Component{
     render(){
         const { questions, answered, unanswered, users } = this.props;
-        console.log(answered)
         return(
             <div className='dashboard tabs'>
                 <input type='radio' id='unanswered' name='tab-group' defaultChecked />
